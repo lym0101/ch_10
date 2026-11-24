@@ -7,6 +7,9 @@ public class FractionDriver {
 		
 		System.out.println(f1);
 		System.out.println(Fraction.mult(f1, f2));
+
+		Fraction sum = Fraction.add(a, b);
+		System.out.println(sum);
 		// System.out.println(f2.numerator + "/" + f2.denominator);
 	}
 }
