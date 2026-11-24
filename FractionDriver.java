@@ -2,14 +2,12 @@ public class FractionDriver {
 	public static void main (String[] args) {
 		Fraction f1 = new Fraction(1,4);
 		Fraction f2 = new Fraction(1,2);
-		System.out.println(f1.numerator + "/" + f1.denominator);
-		System.out.println(f2.numerator + "/" + f2.denominator);
 		
 		System.out.println(f1);
 		System.out.println(Fraction.mult(f1, f2));
 
-		Fraction sum = Fraction.add(a, b);
-		System.out.println(sum);
-		// System.out.println(f2.numerator + "/" + f2.denominator);
+		System.out.println(Fraction.add(f1, f2));
+		System.out.println(Fraction.divide(f1, f2));
+		System.out.println(Fraction.subtract(f1, f2));
 	}
 }
