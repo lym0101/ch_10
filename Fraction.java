@@ -46,7 +46,7 @@ public class Fraction {
 		return numerator + "/" + denominator;
 	}
 	public double toDouble(){
-		return (int)numerator / denominator;
+		return (double)numerator / denominator;
 	}
 	
 	//mutator methods
@@ -67,20 +67,69 @@ public class Fraction {
 		int d = a.getDenom() * b.getDenom();
 		return new Fraction(n,d);
 	}
+	
+	public static Fraction divide(Fraction f1, Fraction f2) {
+    // (a/b) ÷ (c/d) = (a*d) / (b*c) - multiply by the reciprocal
+    int num = f1.numerator * f2.denominator;
+    int den = f1.denominator * f2.numerator;
+    Fraction result = new Fraction(num, den);
+    result.reduce();
+    return result;
+}
+	public static Fraction add(Fraction f1, Fraction f2) {
+    // (a/b) + (c/d) = (a*d + c*b) / (b*d)
+    int num = f1.numerator * f2.denominator + f2.numerator * f1.denominator;
+    int den = f1.denominator * f2.denominator;
+    Fraction result = new Fraction(num, den);
+    result.reduce();
+    return result;
+}
+	public static Fraction subtract(Fraction f1, Fraction f2) {
+    // (a/b) − (c/d) = (a*d − c*b) / (b*d)
+    int num = f1.numerator * f2.denominator - f2.numerator * f1.denominator;
+    int den = f1.denominator * f2.denominator;
+    Fraction result = new Fraction(num, den);
+    result.reduce();
+    return result;
+}
+	
 	//helper method
-	public int GCF (int a, int b) {
-		int gcf = 0;
-		int diff = a-b;
-		while (diff >= 1) {
-			a = diff;
-		}
-		if (a == b) {
-			gcf = a;
-		}
-		return gcf;
-	}
+	public int GCF(int a, int b) {
+    a = Math.abs(a);
+    b = Math.abs(b);
+    if (a == 0) return b;   
+    if (b == 0) return a;   
+    while (a != b) {
+        if (a > b) {
+            a = a - b;
+        } else {
+            b = b - a;
+        }
+    }
+    return a;
+}
 	
 	public static Fraction reduce (Fraction a, Fraction b) {
+		public void reduce() {
+    int a = Math.abs(numerator);
+    int b = Math.abs(denominator);
+    while (b != 0) {
+        int temp = b;
+        b = a % b;
+        a = temp;
+    }
+    int gcd = a;
+
+    if (gcd != 0) {
+        numerator /= gcd;
+        denominator /= gcd;
+    }
+
+    if (denominator < 0) {
+        numerator = -numerator;
+        denominator = -denominator;
+    }
+}
 		return reduce;
 	}
 }
